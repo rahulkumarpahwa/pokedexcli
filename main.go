@@ -1,11 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"github.com/rahulkumarpahwa/pokedexcli/repl"
 )
 
 func main() {
-	fmt.Println("Hello, World!")
+	repl.StartRepl()
 }
-
-
