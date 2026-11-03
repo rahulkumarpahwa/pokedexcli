@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/rahulkumarpahwa/pokedexcli/commands"
 )
 
 func cleanInput(text string) []string {
@@ -19,11 +21,34 @@ func StartRepl() {
 		fmt.Printf("scanner error: %v\n", scanner.Err())
 		return
 	}
-	fmt.Print("Pokedex > ")
+
+	commands.Registry = map[string]commands.CliCommand{
+		"exit": {
+			Name:        "exit",
+			Description: "Exit the Pokedex",
+			Callback:    commands.CommandExit,
+		},
+
+		"help": {
+			Name:        "help",
+			Description: "Displays a help message",
+			Callback:    commands.CommandHelp,
+		},
+	}
+
 	for scanner.Scan() {
 		text := scanner.Text()
 		words := cleanInput(text)
-		fmt.Printf("Your command was: %s\n", words[0])
-		fmt.Print("Pokedex > ")
+		for _, word := range words {
+			val, ok := commands.Registry[word]
+			if !ok {
+				fmt.Println("Unknown command")
+				continue
+			}
+			err := val.Callback()
+			if err != nil {
+				fmt.Println(err)
+			}
+		}
 	}
 }
