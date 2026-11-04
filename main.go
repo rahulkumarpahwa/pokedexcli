@@ -1,9 +1,11 @@
 package main
 
 import (
+	"github.com/rahulkumarpahwa/pokedexcli/config"
 	"github.com/rahulkumarpahwa/pokedexcli/repl"
 )
 
 func main() {
-	repl.StartRepl()
+	cfg := config.Config{NextUrl: "https://pokeapi.co/api/v2/location-area/"}
+	repl.StartRepl(&cfg)
 }

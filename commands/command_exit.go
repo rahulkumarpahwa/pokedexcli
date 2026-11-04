@@ -3,9 +3,11 @@ package commands
 import (
 	"fmt"
 	"os"
+
+	"github.com/rahulkumarpahwa/pokedexcli/config"
 )
 
-func CommandExit() error {
+func CommandExit(config *config.Config) error {
 
 	_, err := fmt.Println("Closing the Pokedex... Goodbye!")
 	if err != nil {

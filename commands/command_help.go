@@ -2,9 +2,11 @@ package commands
 
 import (
 	"fmt"
+
+	"github.com/rahulkumarpahwa/pokedexcli/config"
 )
 
-func CommandHelp() error {
+func CommandHelp(config *config.Config) error {
 
 	fmt.Println("Welcome to the Pokedex!")
 	fmt.Println("Usage:")

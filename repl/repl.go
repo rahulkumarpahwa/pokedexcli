@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/rahulkumarpahwa/pokedexcli/commands"
+	"github.com/rahulkumarpahwa/pokedexcli/config"
 )
 
 func cleanInput(text string) []string {
@@ -14,7 +15,7 @@ func cleanInput(text string) []string {
 	return strings.Fields(small)
 }
 
-func StartRepl() {
+func StartRepl(cfg *config.Config) {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	if scanner.Err() != nil {
@@ -34,6 +35,16 @@ func StartRepl() {
 			Description: "Displays a help message",
 			Callback:    commands.CommandHelp,
 		},
+		"map": {
+			Name:        "map",
+			Description: "Displays the names of 20 location areas in the Pokemon world",
+			Callback:    commands.CommandMap,
+		},
+		"mapb" : {
+			Name: "mapb",
+			Description: "displays the names of previous 20 location areas in the Pokemon world",
+			Callback: commands.CommandMapB,
+		},
 	}
 
 	for scanner.Scan() {
@@ -45,7 +56,7 @@ func StartRepl() {
 				fmt.Println("Unknown command")
 				continue
 			}
-			err := val.Callback()
+			err := val.Callback(cfg)
 			if err != nil {
 				fmt.Println(err)
 			}
