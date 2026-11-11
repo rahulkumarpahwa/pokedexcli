@@ -64,6 +64,11 @@ func StartRepl(cfg *config.Config) {
 			Description: "will only allow players to see details about a Pokemon if they have seen it before",
 			Callback: commands.CommandInspect,
 		}, 
+		"pokedex" : {
+			Name: "pokedex",
+			Description: "prints a list of all the names of the Pokemon the user has caught",
+			Callback: commands.CommandPokedex,
+		},
 	}
 
 	for scanner.Scan() {
