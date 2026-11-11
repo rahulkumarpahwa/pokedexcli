@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/rahulkumarpahwa/pokedexcli/cache"
 	"github.com/rahulkumarpahwa/pokedexcli/config"
 )
 
-func CommandExit(config *config.Config) error {
+func CommandExit(config *config.Config, cache *cache.Cache, args []string) error {
 
 	_, err := fmt.Println("Closing the Pokedex... Goodbye!")
 	if err != nil {

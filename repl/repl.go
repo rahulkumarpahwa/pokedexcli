@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 
+	"github.com/rahulkumarpahwa/pokedexcli/cache"
 	"github.com/rahulkumarpahwa/pokedexcli/commands"
 	"github.com/rahulkumarpahwa/pokedexcli/config"
 )
@@ -16,6 +18,8 @@ func cleanInput(text string) []string {
 }
 
 func StartRepl(cfg *config.Config) {
+	cache := cache.NewCache(5 * time.Minute)
+
 	scanner := bufio.NewScanner(os.Stdin)
 
 	if scanner.Err() != nil {
@@ -40,10 +44,15 @@ func StartRepl(cfg *config.Config) {
 			Description: "Displays the names of 20 location areas in the Pokemon world",
 			Callback:    commands.CommandMap,
 		},
-		"mapb" : {
-			Name: "mapb",
+		"mapb": {
+			Name:        "mapb",
 			Description: "displays the names of previous 20 location areas in the Pokemon world",
-			Callback: commands.CommandMapB,
+			Callback:    commands.CommandMapB,
+		},
+		"explore": {
+			Name:        "explore",
+			Description: "list of all the Pokémon located in the location",
+			Callback:    commands.CommandExplore,
 		},
 	}
 
@@ -53,10 +62,10 @@ func StartRepl(cfg *config.Config) {
 		for _, word := range words {
 			val, ok := commands.Registry[word]
 			if !ok {
-				fmt.Println("Unknown command")
+				// fmt.Println("Unknown command")
 				continue
 			}
-			err := val.Callback(cfg)
+			err := val.Callback(cfg, cache, words)
 			if err != nil {
 				fmt.Println(err)
 			}

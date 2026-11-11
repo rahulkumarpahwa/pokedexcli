@@ -3,10 +3,11 @@ package commands
 import (
 	"fmt"
 
+	"github.com/rahulkumarpahwa/pokedexcli/cache"
 	"github.com/rahulkumarpahwa/pokedexcli/config"
 )
 
-func CommandHelp(config *config.Config) error {
+func CommandHelp(config *config.Config, cache *cache.Cache, args []string) error {
 
 	fmt.Println("Welcome to the Pokedex!")
 	fmt.Println("Usage:")
