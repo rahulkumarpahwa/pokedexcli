@@ -27,9 +27,9 @@ func CommandCatch(config *config.Config, cache *cache.Cache, args []string) erro
 
 	exp := pokemon.BaseExperience
 
-	fmt.Println(exp)
+	// fmt.Println(exp)
 	num := rand.Intn(exp + 10)
-	fmt.Println(num)
+	// fmt.Println(num)
 
 	if num >= exp {
 

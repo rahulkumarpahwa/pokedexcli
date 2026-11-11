@@ -59,6 +59,11 @@ func StartRepl(cfg *config.Config) {
 			Description: "catching Pokemon adds them to the user's Pokedex",
 			Callback:    commands.CommandCatch,
 		},
+		"inspect" :{
+			Name : "inspect <pokemon_name>",
+			Description: "will only allow players to see details about a Pokemon if they have seen it before",
+			Callback: commands.CommandInspect,
+		}, 
 	}
 
 	for scanner.Scan() {
