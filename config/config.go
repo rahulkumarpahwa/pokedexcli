@@ -26,6 +26,7 @@ type Pokemon struct {
 }
 
 type Config struct {
+	ExploreUrl string
 	NextUrl string
 	PrevUrl string
 	Caught  map[string]Pokemon

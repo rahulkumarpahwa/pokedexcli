@@ -7,6 +7,7 @@ import (
 
 func main() {
 	cfg := config.Config{
+		ExploreUrl: "https://pokeapi.co/api/v2/location-area/",
 		NextUrl: "https://pokeapi.co/api/v2/location-area/",
 		Caught:  make(map[string]config.Pokemon),
 	}

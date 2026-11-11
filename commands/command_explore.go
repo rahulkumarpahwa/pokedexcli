@@ -23,10 +23,10 @@ type ExplorePokimon struct {
 }
 
 func CommandExplore(config *config.Config, cache *cache.Cache, args []string) error {
-	if config.NextUrl == "" {
+	if config.ExploreUrl == "" {
 		return fmt.Errorf("next url does not exists")
 	}
-	return ExploreRequest(config.NextUrl, cache, args)
+	return ExploreRequest(config.ExploreUrl, cache, args)
 }
 
 func ExploreRequest(url string, cache *cache.Cache, args []string) error {
