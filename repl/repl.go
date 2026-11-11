@@ -50,9 +50,14 @@ func StartRepl(cfg *config.Config) {
 			Callback:    commands.CommandMapB,
 		},
 		"explore": {
-			Name:        "explore",
+			Name:        "explore <location_name>",
 			Description: "list of all the Pokémon located in the location",
 			Callback:    commands.CommandExplore,
+		},
+		"catch": {
+			Name:        "catch <pokemon_name>",
+			Description: "catching Pokemon adds them to the user's Pokedex",
+			Callback:    commands.CommandCatch,
 		},
 	}
 
